@@ -2,6 +2,7 @@
 % Configurações
 /posicoes 28 def
 /endinicial 10 def
+/momentos 12 def
 
 % Configuração da página
 /mmpx {2.83 mul} def % de mm para pixel; A4mm 210x297; A4pxnops 595x842
@@ -9,17 +10,21 @@
 /altura 270 mmpx def
 /margemesq 15 mmpx def
 /margemsup 270 15 sub mmpx def % deveria ser 297
+/margeminf 25 mmpx def
 
 % Variáveis e rotinas auxiliares
 /deltacoluna largura posicoes div def
 /margemdir margemesq largura add def
 /baixo margemsup 40 sub def
+/maisbaixo baixo 40 sub def
+/deltalinha altura momentos div def
 
 % Configuração: fontes
 /Courier-Bold findfont 9 scalefont setfont
 
 % COMEÇA
 
+%%%%%%%%
 % Rótulos de endereço
 endinicial 1 sub
 margemesq deltacoluna sub 
@@ -30,9 +35,10 @@ posicoes {
     exch
 } repeat pop pop
 
+%%%%%%%
 % Caixa superior
 gsave
-2 setlinewidth
+2 setlinewidth % Linhas espessas
 
 % Linhas verticais
 margemesq deltacoluna sub
@@ -42,8 +48,21 @@ margemsup moveto
 baixo lineto
 stroke} repeat pop
 
+% Linhas horizontais
 margemesq margemsup moveto margemdir margemsup lineto stroke
 margemesq baixo moveto margemdir baixo lineto stroke
 grestore
+
+%%%%%%%
+% Caixa principal
+
+% Linhas verticais
+margemesq deltacoluna sub
+posicoes 1 add
+{deltacoluna add dup dup
+maisbaixo moveto
+margeminf lineto
+stroke} repeat pop
+
 
 showpage
