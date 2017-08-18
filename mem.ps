@@ -4,10 +4,18 @@
 /altura 270 mmpx def
 /margemesq 15 mmpx def
 /margemsup 297 15 sub mmpx def
+/deltacoluna largura posicoes div def
 
-margemesq dup
+margemesq dup dup
 margemsup moveto
 margemsup 40 sub lineto
 stroke
+
+deltacoluna add dup dup
+margemsup moveto
+margemsup 40 sub lineto
+stroke
+
+
 
 showpage
