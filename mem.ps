@@ -21,37 +21,29 @@
 % COMEÇA
 
 % Rótulos de endereço
-endinicial
+endinicial 1 sub
 margemesq deltacoluna sub 
 posicoes {
     deltacoluna add dup margemsup 4 add moveto
     exch
     (@) show 1 add dup 9 string cvs show
     exch
-} repeat
+} repeat pop pop
 
 % Caixa superior
 gsave
 2 setlinewidth
 
-% Primeira linha vertical
-margemesq dup dup
-margemsup moveto
-baixo lineto
-stroke
-
-posicoes
+% Linhas verticais
+margemesq deltacoluna sub
+posicoes 1 add
 {deltacoluna add dup dup
 margemsup moveto
-margemsup 40 sub lineto
+baixo lineto
 stroke} repeat pop
 
 margemesq margemsup moveto margemdir margemsup lineto stroke
 margemesq baixo moveto margemdir baixo lineto stroke
 grestore
-
-% Primeiro rótulo de endereço
-margemesq margemsup 4 add moveto
-(@10) show
 
 showpage
