@@ -8,6 +8,8 @@
 /margemdir margemesq largura add def
 /baixo margemsup 40 sub def
 
+gsave
+2 setlinewidth
 
 margemesq dup dup
 margemsup moveto
@@ -18,10 +20,10 @@ posicoes
 {deltacoluna add dup dup
 margemsup moveto
 margemsup 40 sub lineto
-stroke} repeat
+stroke} repeat pop
 
 margemesq margemsup moveto margemdir margemsup lineto stroke
 margemesq baixo moveto margemdir baixo lineto stroke
-
+grestore
 
 showpage
