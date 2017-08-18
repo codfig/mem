@@ -2,15 +2,15 @@
 % Configurações
 /posicoes 28 def
 /endinicial 10 def
-/momentos 12 def
+/momentos 15 def
 
 % Configuração da página
 /mmpx {2.83 mul} def % de mm para pixel; A4mm 210x297; A4pxnops 595x842
 /largura 180 mmpx def
-/altura 270 mmpx def
+/altura 230 mmpx def
 /margemesq 15 mmpx def
 /margemsup 270 15 sub mmpx def % deveria ser 297
-/margeminf 25 mmpx def
+/margeminf margemsup altura sub def
 
 % Variáveis e rotinas auxiliares
 /deltacoluna largura posicoes div def
@@ -19,14 +19,15 @@
 /maisbaixo baixo 40 sub def
 /deltalinha altura momentos div def
 
-% Configuração: fontes
-/Courier-Bold findfont 9 scalefont setfont
-/strlarg {(@10) stringwidth pop} def
-
 % COMEÇA
 
 %%%%%%%%
 % Rótulos de endereço
+
+% Configuração da fonte
+/Courier-Bold findfont 9 scalefont setfont
+/strlarg {(@10) stringwidth pop} def
+
 endinicial 1 sub
 margemesq deltacoluna sub 
 posicoes {
@@ -38,21 +39,21 @@ posicoes {
 
 %%%%%%%
 % Caixa superior
-gsave
-2 setlinewidth % Linhas espessas
+%gsave
+%2 setlinewidth % Linhas espessas
 
 % Linhas verticais
-margemesq deltacoluna sub
-posicoes 1 add
-{deltacoluna add dup dup
-margemsup moveto
-baixo lineto
-stroke} repeat pop
+%margemesq deltacoluna sub
+%posicoes 1 add
+%{deltacoluna add dup dup
+%margemsup moveto
+%baixo lineto
+%stroke} repeat pop
 
 % Linhas horizontais
-margemesq margemsup moveto margemdir margemsup lineto stroke
-margemesq baixo moveto margemdir baixo lineto stroke
-grestore
+%margemesq margemsup moveto margemdir margemsup lineto stroke
+%margemesq baixo moveto margemdir baixo lineto stroke
+%grestore
 
 %%%%%%%
 % Caixa principal
@@ -61,8 +62,16 @@ grestore
 margemesq deltacoluna sub
 posicoes 1 add
 {deltacoluna add dup dup
-maisbaixo moveto
+margemsup moveto
 margeminf lineto
+stroke} repeat pop
+
+% Linhas verticais
+margemsup deltalinha add
+momentos 1 add
+{deltalinha sub dup dup
+margemesq exch moveto
+margemdir exch lineto
 stroke} repeat pop
 
 
