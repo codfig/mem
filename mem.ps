@@ -2,21 +2,19 @@
 % Configurações
 /posicoes 28 def
 /endinicial 10 def
-/momentos 15 def
+/momentos 18 def
 
 % Configuração da página
 /mmpx {2.83 mul} def % de mm para pixel; A4mm 210x297; A4pxnops 595x842
 /largura 180 mmpx def
-/altura 230 mmpx def
+/altura 270 mmpx def
 /margemesq 15 mmpx def
-/margemsup 270 15 sub mmpx def % deveria ser 297
+/margemsup 290 15 sub mmpx def % deveria ser 297
 /margeminf margemsup altura sub def
 
 % Variáveis e rotinas auxiliares
 /deltacoluna largura posicoes div def
 /margemdir margemesq largura add def
-/baixo margemsup 40 sub def
-/maisbaixo baixo 40 sub def
 /deltalinha altura momentos div def
 
 % COMEÇA
@@ -38,24 +36,6 @@ posicoes {
 } repeat pop pop
 
 %%%%%%%
-% Caixa superior
-%gsave
-%2 setlinewidth % Linhas espessas
-
-% Linhas verticais
-%margemesq deltacoluna sub
-%posicoes 1 add
-%{deltacoluna add dup dup
-%margemsup moveto
-%baixo lineto
-%stroke} repeat pop
-
-% Linhas horizontais
-%margemesq margemsup moveto margemdir margemsup lineto stroke
-%margemesq baixo moveto margemdir baixo lineto stroke
-%grestore
-
-%%%%%%%
 % Caixa principal
 
 % Linhas verticais
@@ -74,6 +54,19 @@ margemesq exch moveto
 margemdir exch lineto
 stroke} repeat pop
 
+%%%%%%%%
+% Rótulos de momentos
 
+% Configuração da fonte
+/Times-Italic findfont 9 scalefont setfont
+
+0 1 sub
+margemsup deltalinha add 
+momentos {
+    deltalinha sub dup 15 sub  margemdir 4 add exch moveto
+    exch
+    (t) show 1 add dup 0 -6 rmoveto 9 string cvs show
+    exch
+} repeat pop pop
 
 showpage
