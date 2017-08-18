@@ -20,9 +20,15 @@
 
 % COMEÇA
 
-% Primeiro rótulo de endereço
-margemesq margemsup 4 add moveto
-(@) show endinicial 9 string cvs show
+% Rótulos de endereço
+endinicial
+margemesq deltacoluna sub 
+posicoes {
+    deltacoluna add dup margemsup 4 add moveto
+    exch
+    (@) show 1 add dup 9 string cvs show
+    exch
+} repeat
 
 % Caixa superior
 gsave
